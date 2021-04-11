@@ -4,6 +4,7 @@ const path = require('path')
 const hbs = require('hbs')
 const bodyParser = require ('body-parser')
 require('./helpers')
+const port = process.env.PORT || 3000;
 
 
 //Path
@@ -115,6 +116,6 @@ app.get('*',function (req,res){
 	})
 })
 
-app.listen(3000, () => {
-	console.log('Servidor en el puerto 3000')
+app.listen(port, () => {
+	console.log('Servidor en el puerto '+ port)
 })
