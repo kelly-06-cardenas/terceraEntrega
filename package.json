@@ -1,1 +1,21 @@
-{}
+{
+  "name": "version-del-proyecto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "body-parse": "^0.1.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "parse": "^3.1.0",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+  	"start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
