@@ -3,8 +3,12 @@
 
 
 <h1> Lista de cursos</h1>
+<form action="/eliminar" method="post">
+
+
 <table class="table"> 
-	<thead> 
+	<thead>
+	    <th>Eliminar</th>	 
 		<th>Nombre</th>
 		<th>Duracion</th>
 		<th>valor</th>
@@ -13,10 +17,37 @@
 	</thead>
 	<tbody>
 
+      {{#each res}}
 
-{{{listar}}} 
-</tbody>
+      <tr>
+      	<td><button type="submit" class="form-control btn btn-primary btn-sm" name="NombreCurso" value="{{this._id}}">eliminar</button></td>
+      	<td>{{this.nombre}}</td>
+      	<td>{{this.duracion}}</td>
+      	<td>{{this.valor}}</td>
+      	<td>{{this.id}}</td>
+      	<td>{{this.estado}}</td>
+
+
+
+
+
+
+
+
+      </tr>
+
+      	
+
+
+
+
+      {{/each}}
+
+
+
+ 	</tbody>
 </table> 
+</form>
 
 
 <img src="pie.png" width="100%" >

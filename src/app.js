@@ -1,10 +1,15 @@
+require('./config/config');
 const express = require('express')
 const app = express()
 const path = require('path')
 const hbs = require('hbs')
 const bodyParser = require ('body-parser')
-require('./helpers')
-const port = process.env.PORT || 3000;
+const mongoose = require('mongoose')
+require('./helpers/helpers')
+
+const jwt = require('jsonwebtoken');
+const session = require('express-session')
+var MemoryStore = require('memorystore')(session)
 
 
 //Path
@@ -18,104 +23,40 @@ app.use(express.static(dirPublic))
 //BodyParser
 app.use(bodyParser.urlencoded({extended : false}))
 
+
+
 //hbs
 app.set('view engine', 'hbs');
 app.set('views', dirViews);
 hbs.registerPartials(dirPartials)
 
-//Paginas
-app.get('/', function (req, res){
-	res.render('index',{
-		titulo: 'Inicio'
-	})
-})
+app.use(require('./routes/index.js'))
 
-app.get('/cursos', function (req, res){
-	res.render('cursos', {
-		titulo: 'curso',
-		
-	})
-})
+/*app.use(session({
+	cookie: { maxAge: 86400000 },
+ 	store: new MemoryStore({
+      	checkPeriod: 86400000 // prune expired entries every 24h
+    	}),
+  	secret: 'keyboard cat',
+  	resave: true,
+  	saveUninitialized: true
+}))
+app.use((req, res, next) =>{
+	if(req.session.usuario){		
+		res.locals.sesion = true
+		res.locals.nombreEst = req.session.nombreEst
+	}	
+	next()
+})*/
 
-app.post('/cursos', function(req, res){
-	res.render('cursos2', {
-		titulo: 'Ver cursos',
-		NombreCurso: req.body.NombreCurso,
-		Duracion: req.body.Duracion,
-		valor: req.boody.valor
-	
-	})
+mongoose.connect(process.env.URLDB,{useNewUrlParser: true, useUnifiedTopology: true},(err, resultado)=>{
+	if (err){
+		return console.log(err)
 
+	}
+	console.log("conectado")
 });
 
-app.get('/registrar', function (req, res){
-	res.render('registrar', {
-		titulo: 'registrar',
-		
-	})
-})
-
-app.post('/registrar', function (req, res){
-	res.render('registrar', {
-		titulo: 'registrar',
-		Nombre: req.body.NombreCurso,
-		Duracion: req.body.Duracion,
-		valor: req.body.valor,
-		ID: req.body.ID,
-		modalidad: req.body.modalidad
-	})
-})
-
-app.get('/inscribir', function(req, res){
-	res.render('inscribir',{
-		titulo: 'inscribir'
-	})
-
-})
-app.post('/inscribir', function(req, res){
-	res.render('inscribir',{
-		titulo: 'inscribir',
-		NombreEst: req.body.nombreEst,
-		correo: req.body.correo,
-		IDcurso: req.body.IDcurso
-
-	})
-
-})
-
-
-app.get('/listaINScripciones', function(req, res){
-	res.render('listaINScripciones',{
-		titulo:'lista de inscripciones'
-	})
-})
-
-app.post('/listaINScripciones', function(req, res){
-	res.render('listaINScripciones',{
-		titulo:'lista de inscripciones',
-		id_Curso: req.body.id_Curso,
-		nombreEstu: req.body.nombreEstu
-	})
-})
-
-
-
-
-
-
-
-
-
-
-
-//error 404
-app.get('*',function (req,res){
-	res.render('error',{
-		titulo:'Error 404'
-
-	})
-})
-
-app.listen(port, () => {
-	console.log('Servidor en el puerto '+ port)
+app.listen(process.env.PORT, ()=>{
+	console.log('servidor en el puerto '+process.env.PORT)
 })

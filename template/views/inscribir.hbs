@@ -1,6 +1,9 @@
 {{>header}}
+
+{{{mensaje}}}
+
 <div  class="container" >
-{{{registrarEST NombreEst correo IDcurso}}}
+
 
 <h1>Completar el formulario</h1>
 
@@ -10,6 +13,13 @@
     <input type="text" class="form-control is-valid" id="validationServer01" required name="nombreEst">
     <div class="valid-feedback">
 
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <label for="validationServer05" class="form-label">Numero identificacion</label>
+    <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required name="nuiden">
+    <div id="validationServer05Feedback" class="invalid-feedback">
     </div>
   </div>
   
@@ -25,13 +35,72 @@
     </div>
   </div>
   
-  <div class="col-md-3">
+  <!--<div class="col-md-3">
     <label for="validationServer05" class="form-label">ID curso</label>
     <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required name="IDcurso">
     <div id="validationServer05Feedback" class="invalid-feedback">
     </div>
+  </div>-->
+  <!--<div class="col-md-3">
+    <label for="validationServer05" class="form-label">Curso</label>
+   <select name="IDcurso">
+     {{#each cursosDIS}}
+       <option value="{{this._id}}">
+         {{this.nombre}}
+       </option>
+
+     {{/each}}
+   </select>
+    <div id="validationServer05Feedback" class="invalid-feedback">
+    </div>
+  </div>-->
+
+  <div class="col-md-3">
+  <label for="inputAddress2" class="form-label">cursos disponibles</label>
+  <select type="text" class="form-control is-valid"  name="IDcurso"  >
+    {{#each cursosDIS}}
+    <option value="{{this._id}}">
+         {{this.nombre}}
+
+       </option>
+       {{/each}}
+
+  </select>
+  <div id="inputAddress2" class="invalid-feedback">
+    </div>
+
   </div>
-  <div class="col-12">
+
+
+  <div class="col-md-3">
+    <label for="validationServer05" class="form-label">Telefono</label>
+    <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required name="tel">
+    <div id="validationServer05Feedback" class="invalid-feedback">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <label for="validationServer02" class="form-label">Usuario</label>
+    <input type="text" class="form-control is-valid"  required name="usuario">
+    <div class="valid-feedback">
+    
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationServer02" class="form-label">Contraseña</label>
+    <input type="password" class="form-control is-valid"  required name="contrasena">
+    <div class="valid-feedback">
+    
+    </div>
+  </div>
+
+  
+
+
+
+
+
+ <div class="col-12">
     <div class="form-check">
       <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
       <label class="form-check-label" for="invalidCheck3">

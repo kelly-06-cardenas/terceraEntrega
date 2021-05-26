@@ -1,8 +1,10 @@
 {{>header}}
 <div  class="container" >
-{{{registrar Nombre Duracion valor ID modalidad}}}
+
+{{{mensaje}}}
 
 <form action="/registrar" method="post">
+
   <h1> Crear nuevo curso</h1>
 
   
@@ -26,8 +28,8 @@
   <div class="col-md-6">
   <label for="inputAddress2" class="form-label">Modalidad</label>
   <select class="form-control" name="modalidad" >
-    <option value= >virtual </option>
-    <option value= >presencial </option>
+    <option value="virtual" >virtual </option>
+    <option value="presencial" >presencial </option>
 
   </select>
   </div>

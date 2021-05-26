@@ -1,30 +1,57 @@
 {{>header}}
-{{{eliminarEst nombreEstu}}}
+
 <div  class="container" >
 
 <h1> listado de incripciones</h1>
 <form class="row g-3" action="/listaINScripciones" method="post">
-	<div class="col-md-4">
-    <label for="validationServer01" class="form-label">ID del curso</label>
+	<!--<div class="col-md-4">
+    <label for="validationServer01" class="form-label">Cursos</label>
     <input type="text" class="form-control is-valid" id="ver"  name="id_Curso">
     <div class="valid-feedback">
     	<button class="btn btn-success" type="submit">ver</button>
 
     </div>
+  </div>-->
+
+  <div class="col-md-3">
+  <label for="inputAddress2" class="form-label">Curso</label>
+
+  <select type="text" class="form-control is-valid" id="ver" name="IDcurso"  >
+    {{#each cursosDIS}}
+    <option value="{{this._id}}">
+         {{this.nombre}}
+
+       </option>
+       {{/each}}
+
+  </select>
+  <div class="valid-feedback">
+      <button class="btn btn-success" type="submit">ver</button>
+
+    </div>
+
+  <div id="inputAddress2" class="invalid-feedback">
+
+    </div>
+
   </div>
+
 	<table>
 		<thead>
 			<tr>
 				<th scope="col">Nombre</th>
 				<th scope="col">correo</th>
+        <th scope="col">Telefono</th>
 				<th scope="col"></th>
 
 			</tr>
 			
 		</thead>
 		<tbody>
-			{{{listarEstudiantes id_Curso }}}
+    {{Mostrar Estu}}
+			
 		</tbody>
+    
 	</table>
 	<div class="col-12">
     
